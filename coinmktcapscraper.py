@@ -46,4 +46,5 @@ df = pd.DataFrame({'date': dates,
 'volume': volumes,
 })
 
+# Data is put into a csv file
 df.to_csv('bitcoin_price_data.csv')
