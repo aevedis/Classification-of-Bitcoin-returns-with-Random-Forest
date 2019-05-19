@@ -13,6 +13,7 @@ today = time.strftime('%Y%m%d')
 
 # The url is dynamically generated based on current date, and the start date chosen at codeline 9
 url = "https://coinmarketcap.com/currencies/bitcoin/historical-data/?start=" + start_date + "&end=" + today
+start = time.time()
 
 # Code necessary to extraxt the html table we're going to scrape date from
 source_code = requests.get(url)
@@ -24,6 +25,8 @@ dates = []
 open_prices = []
 close_prices = []
 volumes = []
+variations = []
+classes = []
 
 # With the loop below the arrays previously declared get populated
 for row in table_body.findAll('tr'):
@@ -36,6 +39,17 @@ for row in table_body.findAll('tr'):
         close_prices.append(close_price)
         volume = td[5].text
         volumes.append(volume)
+        price_var = ((float(close_price)/float(open_price))-1)*100
+        variations.append(price_var)
+        if price_var>2:
+            varclass=4
+        elif price_var<=2 and price_var>=0:
+            varclass=3
+        elif price_var>=-2 and price_var<0:
+            varclass=2
+        elif price_var<-2:
+        	varclass=1
+        classes.append(varclass)
 
 
         
@@ -44,7 +58,14 @@ df = pd.DataFrame({'date': dates,
 'open': open_prices,
 'close': close_prices,
 'volume': volumes,
+'pricevar': variations,
+'classes': classes,
 })
 
 # Data is put into a csv file
-df.to_csv('bitcoin_price_data.csv')
+df.to_csv('bitcoin_price_data.csv', index=False)
+
+end = time.time()
+executiontime = end - start
+executiontimestr = str(executiontime)
+print("CSV successfully generated. The process took " + executiontimestr + " seconds")
