@@ -13,8 +13,8 @@ import datetime
 
 bull_vocab = ["long", "bull", "bullish", "moon", "skyrocket"]
 bear_vocab = ["short", "bear", "bearish", "falling", "sinking"]
-since = "2019-05-07"
-until = "2019-05-08"
+since = "2010-01-01"
+until = "2010-01-02"
 numbullwords = 0
 numbearwords = 0
 
@@ -79,7 +79,7 @@ for i in dates_df.index:
 
     # We put all the data in Pandas' DataFrame object. Mathematically, a simple matrix
     df = pd.DataFrame({'Date': [since],'NumBullWords': [numbullwords], 'NumBearWords': [numbearwords]})
-    print("NumBullWords: " + str(numbullwords) + "\n" + "NumBearWords: " + str(numbearwords) + "\n" + "\n")
+    print("Date: " + str(since) + "\n" + "NumBullWords: " + str(numbullwords) + "\n" + "NumBearWords: " + str(numbearwords) + "\n" + "\n")
     
     # Setting back the counters to zero for the new cycle
     numbullwords = 0
