@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import urllib.request
 from collections import Counter
@@ -27,6 +28,8 @@ since = year + "-" + month + "-" + daystart
 until = year + "-" + month + "-" + daystart
 bull_vocab = ["long", "bull", "bullish", "moon", "skyrocket"]
 bear_vocab = ["short", "bear", "bearish", "falling", "sinking"]
+numbullwords = 0
+numbearwords = 0
 
 
 # With the loop below the arrays previously declared get populated
@@ -52,22 +55,27 @@ for _ in range(15):
     time.sleep(0.2)
     tweets = driver.find_elements_by_class_name('tweet-text')
 
-    df = pd.DataFrame({'Tweet': [tweet.text for tweet in tweets]})
+    tweets_df = pd.DataFrame({'Tweet': [tweet.text for tweet in tweets]})
 
-    df['Tweet'] = df['Tweet'].apply(lambda x: clean_text(x))
+    tweets_df['Tweet'] = tweets_df['Tweet'].apply(lambda x: clean_text(x))
 
 
-for i in df.index:
+for i in tweets_df.index:
     wordcountbull = dict((x,0) for x in bull_vocab)
     wordcountbear = dict((x,0) for x in bear_vocab)
-    numbullwords = 0
-    numbearwords = 0
-    for w in re.findall(r"\w+", str(df['Tweet'][i])):
+    for w in re.findall(r"\w+", str(tweets_df['Tweet'][i])):
         if w in wordcountbull:
             numbullwords += 1
         elif w in wordcountbear:
             numbearwords += 1
-    print("Tweet: " + str(df['Tweet'][i]) + "\n" + "NumBullWords: " + str(numbullwords) + "\n" + "NumBearWords: " + str(numbearwords) + "\n" + "\n")
 
-# Data is put into a csv file
-#df.to_csv('tweet_data.csv', index=True)
+# We put all the data in Pandas' DataFrame object. Mathematically, a simple matrix
+df = pd.DataFrame({'NumBullWords': [numbullwords], 'NumBearWords': [numbearwords]})
+print("NumBullWords: " + str(numbullwords) + "\n" + "NumBearWords: " + str(numbearwords) + "\n" + "\n")
+
+# Ff file doesn't exist, write header 
+if not os.path.isfile('tweet_data.csv'):
+   df.to_csv('tweet_data.csv', index=False)
+else: # If it exists, append new data without writing header
+   df.to_csv('tweet_data.csv', mode='a', header=False, index=False)
+
