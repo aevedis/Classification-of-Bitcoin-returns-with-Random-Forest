@@ -1,30 +1,32 @@
+import random
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+import matplotlib.pyplot as plt
+import scikitplot as skplt
 import pandas as pd
 import numpy as np
 import time
 
-# Setting random seed
-np.random.seed(73)
-
-# Loading the dataset into a Pandas' DataFrame object
-dataset = pd.read_csv('dataset.csv')
+# Read in data and display first 5 rows
+dataset = pd.read_csv('Data/dataset.csv')
 df = pd.DataFrame(dataset)
+#df = pd.to_numeric(df)
+#df = df.astype(np.float16)
+#df=df.apply(pd.to_numeric, errors='coerce')
 
-# Some descriptive statistics about every column
-#print(df.describe())
 
 # Removing the first column (Date always increments, hence it is not useful for predicting)
 df = df.drop('date', 1)
 
-# Creating two separate datasets, the first one to train our random forest, the second one to test it on unseen data
-train, test = df[df['istest']==0], df[df['istest']==1]
+# Printing descriptive statistics about the dataset
+#print(df.describe())
 
-#print('Number of observations in the training data:', len(train))
-#print('Number of observations in the test data:',len(test))
+
+train, test = train_test_split(df, test_size=0.2)
 
 # Creating a list of the feature column's names
-labels = df.columns[:7]
-
+labels = df.columns[:16]
 
 # Assigning class' values to y variable
 y = train['class']
@@ -32,7 +34,7 @@ y = train['class']
 start = time.time()
 
 # Create a random forest Classifier. By convention, clf means 'Classifier'
-clf = RandomForestClassifier(n_jobs=2, random_state=0, n_estimators=50)
+clf = RandomForestClassifier(n_estimators = 600, random_state = 73)
 
 # Training the classifier on our test dataset
 clf.fit(train[labels], y)
@@ -45,10 +47,19 @@ print("Random Forest successfully trained. The process took " + executiontimestr
 yactual = test['class']
 ypredicted = clf.predict(test[labels])
 
-
+	
 #print(ypredicted)
 print(clf.predict_proba(test[labels])[0:50])
+print("\n")
+print(pd.crosstab(yactual, ypredicted, rownames=['Actual classes'], colnames=['Predicted classes']))
 
-#print(list(zip(train[labels], clf.feature_importances_)))
+skplt.metrics.plot_confusion_matrix(yactual, ypredicted, normalize=True)
+plt.show()
 
-#print(pd.crosstab(yactual, ypredicted, rownames=['Actual classes'], colnames=['Predicted classes']))
+# Plot AUC Curve: how, considering that they are made for binary classification?
+#y_pred_proba = clf.predict_proba(test[labels])[::,1]
+#fpr, tpr, _ = metrics.roc_curve(yactual,  ypredicted)
+#auc = metrics.roc_auc_score(yactual, ypredicted)
+#plt.plot(fpr,tpr,label="data 1, auc="+str(auc))
+#plt.legend(loc=4)
+#plt.show()

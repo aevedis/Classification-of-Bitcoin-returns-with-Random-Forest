@@ -13,8 +13,8 @@ import datetime
 
 bull_vocab = ["long", "bull", "bullish", "moon", "skyrocket"]
 bear_vocab = ["short", "bear", "bearish", "falling", "sinking"]
-since = "2010-01-01"
-until = "2010-01-02"
+since = "2016-01-01"
+until = "2016-01-02"
 numbullwords = 0
 numbearwords = 0
 
@@ -43,7 +43,7 @@ driver.implicitly_wait(30)
 #driver.maximize_window()
 
 # Generating array of dates
-dates_df = generate_dates(since, "2019-05-13") # IMPORTANT: the second argument is the final that we wish to loop
+dates_df = generate_dates(since, "2017-01-01") # IMPORTANT: the second argument is the final that we wish to loop
 for i in dates_df.index:
     if i>0:
         since = dates_df['Date'][i-1].strftime("%Y-%m-%d")
@@ -58,7 +58,7 @@ for i in dates_df.index:
     time.sleep(sleeptime)
     body = driver.find_element_by_tag_name('body')
 
-    for _ in range(15):
+    for _ in range(40):
         body.send_keys(Keys.PAGE_DOWN)
         time.sleep(0.2)
         tweets = driver.find_elements_by_class_name('tweet-text')
