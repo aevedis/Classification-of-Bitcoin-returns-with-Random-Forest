@@ -1,7 +1,7 @@
 import random
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn import metrics
+from sklearn.metrics import roc_curve, auc
 import matplotlib.pyplot as plt
 import scikitplot as skplt
 import pandas as pd
@@ -46,6 +46,7 @@ print("Random Forest successfully trained. The process took " + executiontimestr
 
 yactual = test['class']
 ypredicted = clf.predict(test[labels])
+n_classes = 4
 
 	
 #print(ypredicted)
@@ -53,9 +54,10 @@ print(clf.predict_proba(test[labels])[0:50])
 print("\n")
 print(pd.crosstab(yactual, ypredicted, rownames=['Actual classes'], colnames=['Predicted classes']))
 
-skplt.metrics.plot_confusion_matrix(yactual, ypredicted, normalize=True)
-plt.show()
+#skplt.metrics.plot_confusion_matrix(yactual, ypredicted, normalize=True)
+#plt.show()
 
+# 1st error
 # Plot AUC Curve: how, considering that they are made for binary classification?
 #y_pred_proba = clf.predict_proba(test[labels])[::,1]
 #fpr, tpr, _ = metrics.roc_curve(yactual,  ypredicted)
@@ -63,3 +65,34 @@ plt.show()
 #plt.plot(fpr,tpr,label="data 1, auc="+str(auc))
 #plt.legend(loc=4)
 #plt.show()
+
+
+
+# 2nd error
+#skplt.metrics.plot_roc(yactual, ypredicted)
+#plt.show()
+
+
+
+
+# 3rd error
+# Compute ROC curve and ROC area for each class
+#fpr = dict()
+#tpr = dict()
+#roc_auc = dict()
+#for i in range(n_classes):
+#    fpr[i], tpr[i], _ = roc_curve(yactual[:, i], ypredicted[:, i])
+#    roc_auc[i] = auc(fpr[i], tpr[i])
+
+# Plot of a ROC curve for a specific class
+#for i in range(n_classes):
+#    plt.figure()
+#    plt.plot(fpr[i], tpr[i], label='ROC curve (area = %0.2f)' % roc_auc[i])
+#    plt.plot([0, 1], [0, 1], 'k--')
+#    plt.xlim([0.0, 1.0])
+#    plt.ylim([0.0, 1.05])
+#    plt.xlabel('False Positive Rate')
+#    plt.ylabel('True Positive Rate')
+#    plt.title('Receiver operating characteristic example')
+#    plt.legend(loc="lower right")
+#    plt.show()
