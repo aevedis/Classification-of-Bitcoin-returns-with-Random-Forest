@@ -1,7 +1,7 @@
 import random
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import roc_curve, auc
+from sklearn.metrics import roc_curve, auc, accuracy_score
 from sklearn.datasets import load_digits
 from sklearn.model_selection import learning_curve
 import matplotlib.pyplot as plt
@@ -28,7 +28,7 @@ df = df.drop('date', 1)
 train, test = train_test_split(df, test_size=0.2)
 
 # Creating a list of the feature column's names
-labels = df.columns[:16]
+labels = df.columns[:25]
 
 # Assigning class' values to y variable
 y = train['class']
@@ -49,29 +49,32 @@ executiontime = end - start
 executiontimestr = str(executiontime)
 print("Random Forest successfully trained. The process took " + executiontimestr + " seconds")
 
-yactual = test['class']
-ypredicted = clf.predict(test[labels])
+y_actual = test['class']
+y_predicted = clf.predict(test[labels])
+predictions = [round(value) for value in y_predicted]
 n_classes = 4
 yprob = clf.predict_proba(test[labels])
+accuracy = accuracy_score(y_actual, predictions)
 	
-#print(ypredicted)
 print(yprob)
 print("\n")
-print(pd.crosstab(yactual, ypredicted, rownames=['Actual classes'], colnames=['Predicted classes']))
+print("Accuracy: %.2f%%" % (accuracy * 100.0))
+print("\n")
+print(pd.crosstab(y_actual, y_predicted, rownames=['Actual classes'], colnames=['Predicted classes']))
+
 
 # Plot Learning curve
 #skplt.estimators.plot_learning_curve(clf, my_X, my_y, cv=5)
 #plt.show()
 
 # Plot ROC curve
-#skplt.metrics.plot_roc(yactual, yprob)
-#plt.show()
+skplt.metrics.plot_roc(y_actual, yprob)
+plt.show()
 
 # Plot Precision Recall Curve
-#skplt.metrics.plot_precision_recall_curve(yactual, yprob)
+#skplt.metrics.plot_precision_recall_curve(y_actual, yprob)
 #plt.show()
 
 # Plot confusion matrix
-#skplt.metrics.plot_confusion_matrix(y_true=yactual, y_pred=ypredicted)
-#plt.show()
-
+skplt.metrics.plot_confusion_matrix(y_true=y_actual, y_pred=y_predicted)
+plt.show()
