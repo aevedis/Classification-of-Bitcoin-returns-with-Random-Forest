@@ -1,12 +1,13 @@
 import pandas as pd
 import time
+import math
 import re
 import csv
 import requests
 from bs4 import BeautifulSoup
 
 # I arbitrarily decided to scrape data from January 1st 2014
-start_date = "20140101"
+start_date = "20131228"
 
 # Sets the variable "today" as the datetime object.
 today = time.strftime('%Y%m%d')
@@ -15,7 +16,7 @@ today = time.strftime('%Y%m%d')
 url = "https://coinmarketcap.com/currencies/bitcoin/historical-data/?start=" + start_date + "&end=" + today
 start = time.time()
 
-# Code necessary to extraxt the html table we're going to scrape date from
+# Code necessary to extract the html table we're going to scrape date from
 source_code = requests.get(url)
 plain_text = source_code.text
 soup = BeautifulSoup(plain_text, 'html.parser')
@@ -41,13 +42,17 @@ for row in table_body.findAll('tr'):
         volumes.append(volume)
         price_var = ((float(close_price)/float(open_price))-1)*100
         variations.append(price_var)
-        if price_var>2:
+        if price_var>3.5:
+            varclass=6
+        elif price_var<=3.5 and price_var>1.5:
+            varclass=5
+        elif price_var>=0 and price_var<=1.5:
             varclass=4
-        elif price_var<=2 and price_var>=0:
+        elif price_var<0 and price_var>=-1.5:
             varclass=3
-        elif price_var>=-2 and price_var<0:
+        elif price_var>=-3.5 and price_var<-1.5:
             varclass=2
-        elif price_var<-2:
+        elif price_var<-3.5:
         	varclass=1
         classes.append(varclass)
 
