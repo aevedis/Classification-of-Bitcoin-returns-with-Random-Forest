@@ -1,4 +1,5 @@
 import random
+from random import randint
 import csv
 import datetime
 import cufflinks as cf
@@ -57,10 +58,11 @@ print('Number of observations in the training data:', len(train))
 print('Number of observations in the test data:',len(test))
 print("\n")
 
-
-# Getting actual price for each day
-portfolio_values = []
+BH_portfolio_values = []
+actual_portfolio_values = []
 dates = []
+signals = []
+
 
 # The two SLOC below are necessary because of the construction of the dataset
 num = num +1
@@ -68,22 +70,62 @@ num2 = num2 +1
 
 dataset = pd.read_csv('Data/bitcoin_price_data.csv')
 df2 = pd.DataFrame(dataset)
-usd_holdings = 1000
-btc_holdings = usd_holdings / df2['open'][num]
-usd_holdings = 0
-portfolio_value = 0
+USD_holdings = 1000
+BTC_holdings = 0
+benchmark_BTC_holdings = USD_holdings / df2['open'][0]
 wealth = 0
+
+
 for row in range(len(df2)):
     if row >= num and row <= num2:
         date = df2['date'][row]
         dates.append(date)
-        wealth = btc_holdings * df2['open'][row]
-        portfolio_values.append(wealth)
+
+        #Loading random signals for trading
+        signal = randint(1, 6)
+        signals.append(signal)
+        
+        if signal == 1:
+            #Short 2x
+    	    if BTC_holdings > 0:
+                USD_holdings = BTC_holdings * df2['open'][row]
+                BTC_holdings = 0
+        elif signal == 2:
+    	    #Short 1.5x
+    	    if BTC_holdings > 0:
+                USD_holdings = BTC_holdings * df2['open'][row]
+                BTC_holdings = 0
+        elif signal == 3:
+    	    #Sell no lev
+    	    if BTC_holdings > 0:
+                USD_holdings = BTC_holdings * df2['open'][row]
+                BTC_holdings = 0
+        elif signal == 4:
+    	    #Buy no lev
+    	    if USD_holdings > 0:
+                BTC_holdings = USD_holdings / df2['open'][row]
+                USD_holdings = 0
+        elif signal == 5:
+    	    #Long 1.5x
+    	    if USD_holdings > 0:
+                BTC_holdings = USD_holdings / df2['open'][row]
+                USD_holdings = 0
+        elif signal == 6:
+    	    #Long 2x
+    	    if USD_holdings > 0:
+                BTC_holdings = USD_holdings / df2['open'][row]
+                USD_holdings = 0
+
+        wealth = BTC_holdings * df2['open'][row] + USD_holdings
+        actual_portfolio_values.append(wealth)
+
+        BH_wealth = benchmark_BTC_holdings * df2['open'][row] 
+        BH_portfolio_values.append(BH_wealth)
     else:
     	pass
 
 
-print(df['open'])
+#print(df['open'])
 #plot([go.Scatter(x=dates, y=portfolio_values, marker={'color': 'blue'})])
 
 #iplot([{"x": dates, "y": portfolio_values}]) # For Jupyter Notebook
@@ -93,17 +135,28 @@ print(df['open'])
 
 
 # Create a trace
-trace = go.Scatter(
+tracebench = go.Scatter(
+	x = dates,
+    y = BH_portfolio_values,
+	mode = 'lines',
 	name = 'Benchmark',
-    x = dates,
-    y = portfolio_values,
     line = dict(
         color = ('rgb(180, 46, 71)'),
         width = 4,
         dash = 'dot')
 )
 
-data = [trace]
+traceportfolio = go.Scatter(
+    x = dates,
+    y = actual_portfolio_values,
+    mode = 'lines',
+    name = 'Portfolio',
+    line = dict(
+        color = ('rgb(45, 78, 175)'),
+        width = 4)
+)
+
+data = [tracebench, traceportfolio]
 
 layout = dict(title = 'Bitcoin wealth variation in absolute prices',
               xaxis = dict(title = 'Date'),
