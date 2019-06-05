@@ -58,6 +58,8 @@ print('Number of observations in the training data:', len(train))
 print('Number of observations in the test data:',len(test))
 print("\n")
 
+
+# Getting actual price for each day
 BH_portfolio_values = []
 actual_portfolio_values = []
 dates = []
@@ -72,19 +74,16 @@ dataset = pd.read_csv('Data/bitcoin_price_data.csv')
 df2 = pd.DataFrame(dataset)
 USD_holdings = 1000
 BTC_holdings = 0
-benchmark_BTC_holdings = USD_holdings / df2['open'][0]
+benchmark_BTC_holdings = USD_holdings / df2['open'][num]
 wealth = 0
-
-
 for row in range(len(df2)):
     if row >= num and row <= num2:
         date = df2['date'][row]
         dates.append(date)
 
-        #Loading random signals for trading
+        # Generating random trading signals
         signal = randint(1, 6)
-        signals.append(signal)
-        
+
         if signal == 1:
             #Short 2x
     	    if BTC_holdings > 0:
@@ -125,7 +124,7 @@ for row in range(len(df2)):
     	pass
 
 
-#print(df['open'])
+print(df['open'])
 #plot([go.Scatter(x=dates, y=portfolio_values, marker={'color': 'blue'})])
 
 #iplot([{"x": dates, "y": portfolio_values}]) # For Jupyter Notebook
@@ -142,8 +141,7 @@ tracebench = go.Scatter(
 	name = 'Benchmark',
     line = dict(
         color = ('rgb(180, 46, 71)'),
-        width = 4,
-        dash = 'dot')
+        width = 4)
 )
 
 traceportfolio = go.Scatter(
@@ -153,7 +151,8 @@ traceportfolio = go.Scatter(
     name = 'Portfolio',
     line = dict(
         color = ('rgb(45, 78, 175)'),
-        width = 4)
+        width = 4,
+        dash = 'dot')
 )
 
 data = [tracebench, traceportfolio]
