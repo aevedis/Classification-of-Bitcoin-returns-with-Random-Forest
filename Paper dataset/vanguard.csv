@@ -1,4 +1,4 @@
-Date,Open,High,Low,Close,Adj Close,Volume
+date,vanguardopen,vanguardhigh,vanguardlow,vanguardclose,vanguardadjclose,vanguardvolume
 10/1/2010,45.189999,45.240002,44.91,45.16,36.315605,114400
 10/4/2010,44.950001,45.110001,44.52,44.75,35.985912,81700
 10/5/2010,45.209999,45.900002,45.209999,45.799999,36.830276,60900
