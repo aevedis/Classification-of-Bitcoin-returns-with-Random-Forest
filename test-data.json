@@ -1,1 +1,182 @@
-[{"Name":"Pasticceria Levante","City":"Bologna","Province":"(BO)","CAP":40139,"Latitude":44.4799,"Longitude":11.3841,"Phone Number":"+39 051 549606"},{"Name":"Pasticceria 2M","City":"Bologna","Province":"(BO)","CAP":40138,"Latitude":44.494,"Longitude":11.38,"Phone Number":"+39 051 0973036"},{"Name":"Pasticceria Baldus","City":"Bologna","Province":"(BO)","CAP":40133,"Latitude":44.4933,"Longitude":11.2842,"Phone Number":"+39 051 569334"},{"Name":"Bar Pasticceria il Kroffo","City":"Bologna","Province":"(BO)","CAP":40127,"Latitude":44.5005,"Longitude":11.3736,"Phone Number":"+39 051 6330441"},{"Name":"Forno Pasticceria Il Cigno di Tatiana Piankova","City":"Bologna","Province":"(BO)","CAP":40137,"Latitude":44.475,"Longitude":11.3686,"Phone Number":"+39 051 0452525"},{"Name":"La Funivia","City":"Bologna","Province":"(BO)","CAP":40135,"Latitude":44.4912,"Longitude":11.3023,"Phone Number":"+39 051 6145062"},{"Name":"Il Gelatauro","City":"Bologna","Province":"(BO)","CAP":40125,"Latitude":44.49407,"Longitude":11.35467,"Phone Number":"+39 051 230049"},{"Name":"Gino Fabbri - La Caramella","City":"Bologna","Province":"(BO)","CAP":40127,"Latitude":44.5342,"Longitude":11.3895,"Phone Number":"+39 051 505074"},{"Name":"Pasticceria Gamberini","City":"Bologna","Province":"(BO)","CAP":40121,"Latitude":44.4956,"Longitude":11.3378,"Phone Number":"+39 051 7417960"},{"Name":"Antica Bologna di Alfieri Ciro Ciro","City":"Bologna","Province":"(BO)","CAP":40125,"Latitude":44.49407,"Longitude":11.35413,"Phone Number":"+39 051 223696"},{"Name":"Ornielli","City":"Bologna","Province":"(BO)","CAP":40133,"Latitude":44.4986,"Longitude":11.2952,"Phone Number":"+39 051 569002"},{"Name":"Cremeria Santo Stefano","City":"Bologna","Province":"(BO)","CAP":40100,"Latitude":44.4881,"Longitude":11.3522,"Phone Number":"+39 051 227045"},{"Name":"Gelateria Moda Di Tolomelli Davide","City":"Bologna","Province":"(BO)","CAP":40127,"Latitude":44.5044,"Longitude":11.3597,"Phone Number":"+39 051 246859"},{"Name":"Cremeria Scirocco","City":"Bologna","Province":"(BO)","CAP":40138,"Latitude":44.4951,"Longitude":11.4007,"Phone Number":"+39 051 6010051"},{"Name":"Gelateria Cremeria Mascarella","City":"Bologna","Province":"(BO)","CAP":40126,"Latitude":44.49911,"Longitude":11.34991,"Phone Number":"+39 051 263236"},{"Name":"Bar Venezia","City":"Bologna","Province":"(BO)","CAP":40134,"Latitude":44.4954,"Longitude":11.3218,"Phone Number":"+39 051 6143652"},{"Name":"Briciole Golose","City":"Bologna","Province":"(BO)","CAP":40134,"Latitude":44.493,"Longitude":11.3193,"Phone Number":"+39 347 8414424"},{"Name":"Atti Paolo & Figli","City":"Bologna","Province":"(BO)","CAP":40124,"Latitude":44.4936,"Longitude":11.34518,"Phone Number":"+39 051 233349"},{"Name":"Giallopasta","City":"Bologna","Province":"(BO)","CAP":40124,"Latitude":44.48926,"Longitude":11.34873,"Phone Number":"+39 051 264777"},{"Name":"Il Kroffo","City":"Bologna","Province":"(BO)","CAP":40138,"Latitude":44.49642,"Longitude":11.37376,"Phone Number":"+39 051 6330441"}]
+[
+{
+"Name": "Pasticceria Bar Prosdocimi",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30174,
+"Latitude": 45.512,
+"Longitude": 12.21199,
+"Phone Number": "+39 041 907724"
+},
+{
+"Name": "Pasticceria Da Re",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30174,
+"Latitude": 45.4952,
+"Longitude": 12.2176,
+"Phone Number": "+39 041 916816"
+},
+{
+"Name": "Antica Pasticceria Marini di Fontana Marco",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30174,
+"Latitude": 45.49374,
+"Longitude": 12.24122,
+"Phone Number": "+39 041 961625"
+},
+{
+"Name": "Pasticceria Bonaldo di Bonaldo V. e O. Snc",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30173,
+"Latitude": 45.50532,
+"Longitude": 12.28698,
+"Phone Number": "+39 041 630231"
+},
+{
+"Name": "Pasticceria Milady",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30175,
+"Latitude": 45.4769,
+"Longitude": 12.2111,
+"Phone Number": "+39 041 923989"
+},
+{
+"Name": "Michela Cake Designer",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30174,
+"Latitude": 45.4728,
+"Longitude": 12.1801,
+"Phone Number": "+39 392 2632855"
+},
+{
+"Name": "Bar Dolce Vita",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30176,
+"Latitude": 45.4387,
+"Longitude": 12.19994,
+"Phone Number": "+39 331 2621482"
+},
+{
+"Name": "Emilio Colussi Srl",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30124,
+"Latitude": 45.43591,
+"Longitude": 12.33553,
+"Phone Number": "+39 041 5222659"
+},
+{
+"Name": "Pasticceria Toletta",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30123,
+"Latitude": 45.4317,
+"Longitude": 12.32635,
+"Phone Number": "+39 041 5227451"
+},
+{
+"Name": "Pasticceria Rosa Salva",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30100,
+"Latitude": 45.43496,
+"Longitude": 12.33693,
+"Phone Number": "+39 041 5210544"
+},
+{
+"Name": "Panificio Pasticceria Palmisano Carmelina",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30142,
+"Latitude": 45.48554,
+"Longitude": 12.41773,
+"Phone Number": "+39 0421 350080"
+},
+{
+"Name": "Pasticceria Caldara",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30126,
+"Latitude": 45.40293,
+"Longitude": 12.3623,
+"Phone Number": "+39 041 5265594"
+},
+{
+"Name": "Dolcemente Salato",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30100,
+"Latitude": 45.42596,
+"Longitude": 12.33656,
+"Phone Number": "+39 041 5221940"
+},
+{
+"Name": "Dolce Vita Caffe' di Fabio Tiezza",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30100,
+"Latitude": 45.43918,
+"Longitude": 12.33415,
+"Phone Number": "+39 041 7128980"
+},
+{
+"Name": "Majer - Via Garibaldi Panificio Pasticceria Bar CaffÈ Vino",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30122,
+"Latitude": 45.43185,
+"Longitude": 12.35242,
+"Phone Number": "+39 041 2412390"
+},
+{
+"Name": "Pasticceria Canonica",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30122,
+"Latitude": 45.43504,
+"Longitude": 12.34102,
+"Phone Number": "+39 041 5208576"
+},
+{
+"Name": "Chiusso",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30122,
+"Latitude": 45.4356,
+"Longitude": 12.3458,
+"Phone Number": "+39 041 5231611"
+},
+{
+"Name": "Pasticceria Coro' di Coro' Rinaldo",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30171,
+"Latitude": 45.4868,
+"Longitude": 12.2293,
+"Phone Number": "+39 041 930601"
+},
+{
+"Name": "Pasticceria Nobile",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30173,
+"Latitude": 45.4943,
+"Longitude": 12.2545,
+"Phone Number": "+39 041 5341911"
+},
+{
+"Name": "Pasticceria Tonolo S.r.l.",
+"City": "Venezia",
+"Province": "(VE)",
+"CAP": 30100,
+"Latitude": 45.4385,
+"Longitude": 12.3417,
+"Phone Number": "+39 041 5237209"
+}
+]
